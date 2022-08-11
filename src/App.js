@@ -29,6 +29,9 @@ function App() {
           <NewQuote />
         </Route>
 
+        {/* '*'signals react-router that any url(path) shd match this route. */}
+        {/* this route is for - when user finds a route that is not available in our defined routes(pages). */}
+        {/* route for matching all the incoming requests eg:- http://localhost:3000/hello */}
         <Route path='*'>
           <NotFound />
         </Route>
