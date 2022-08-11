@@ -4,6 +4,7 @@ import QuoteDetail from "./pages/QuoteDetail";
 import NewQuote from "./pages/NewQuote";
 import { Redirect } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
         {/* route for adding new quote */}
         <Route path='/new-quote'>
           <NewQuote />
+        </Route>
+
+        <Route path='*'>
+          <NotFound />
         </Route>
       </Switch>
     </Layout>
