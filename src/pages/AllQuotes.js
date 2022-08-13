@@ -5,9 +5,15 @@ import { getAllQuotes } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NoQuotesFound from "../components/quotes/NoQuotesFound";
 
+// const DUMMY_QUOTES = [
+//     { id: 'q1', author: 'Jatinder', text: 'Learning React is fun!' },
+//     { id: 'q2', author: 'Jatinder Kaur', text: 'Learning React is great!' },
+// ];
+
 const AllQuotes = () => {
     const { sendRequest, data: loadedQuotes, status, error } = useHttp(getAllQuotes, true);
 
+    // using useEffect to send request when this component loads.
     useEffect(() => {
         sendRequest();
     }, [sendRequest]);
@@ -27,6 +33,7 @@ const AllQuotes = () => {
     }
 
     return (
+        // <QuoteList quotes={DUMMY_QUOTES}></QuoteList>
         <QuoteList quotes={loadedQuotes}></QuoteList>
     );
 };
