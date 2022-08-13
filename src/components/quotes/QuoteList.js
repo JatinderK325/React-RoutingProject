@@ -31,7 +31,12 @@ const QuoteList = (props) => {
 
   const changeSortingHandler = () => {
     // To update the query parameters in the url.
-    history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc')); // new path has been added.
+    // Or history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc')); // new path has been added.
+    /* or history.push({
+      pathname: location.pathname,
+      search: `sort=${(isSortingAscending ? 'desc' : 'asc')}`,
+    }); */
+    history.push(`${location.pathname}?sort=${(isSortingAscending ? 'desc' : 'asc')}`);
   };
 
   return (

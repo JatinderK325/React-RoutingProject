@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import Comments from "../components/comments/Comments";
-import { Route } from "react-router-dom";
+// useRouteMatch is a kind of similar to useLocation but it has more information abt currently loaded route.
+import { Route, Link, useRouteMatch } from "react-router-dom";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
 const DUMMY_QUOTES = [
@@ -9,6 +10,8 @@ const DUMMY_QUOTES = [
 ];
 
 const QuoteDetail = () => {
+    const match = useRouteMatch();
+    console.log(match);
     const params = useParams();
 
     const quote = DUMMY_QUOTES.find(quote => quote.id === params.quoteId);
@@ -20,8 +23,16 @@ const QuoteDetail = () => {
     return (
         <section>
             <HighlightedQuote text={quote.text} author={quote.author}></HighlightedQuote>
+            {/* Or <Route path={`/quotes/${params.quoteId}`} exact> */}
+            <Route path={match.path} exact>
+                <div className='centered'>
+                    {/* Or <Link className='btn--flat' to={`/quotes/${params.quoteId}/comments`}>Load Comments</Link> */}
+                    <Link className='btn--flat' to={`${match.url}/comments`}>Load Comments</Link>
+                </div>
+            </Route>
             {/* OR <Route path='/quotes/:quoteId/comments'> */}
-            <Route path={`/quotes/${params.quoteId}/comments`}>
+            {/* Or <Route path={`/quotes/${params.quoteId}/comments`}> */}
+            <Route path={`${match.path}/comments`}>
                 <Comments />
             </Route>
         </section>
